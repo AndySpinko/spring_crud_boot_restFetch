@@ -11,8 +11,8 @@ import javax.validation.constraints.Size;
 import java.util.*;
 
 @Entity
-@Table(name = "users", indexes = {@Index(columnList = "name, last_name ASC")})
-public final class User implements UserDetails {
+@Table(name = "users")
+public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,14 +37,16 @@ public final class User implements UserDetails {
     @Positive(message = "Age should not be empty")
     private int age;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> roles = new HashSet<>();
+    @ManyToMany
+    @JoinTable(name = "users_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private List<Role> roles = new ArrayList<>();
 
     public User() {
     }
 
-    public User(String firstName, String lastName, int age, String email, String password, Set<Role> roles) {
+    public User(String firstName, String lastName, int age, String email, String password, List<Role> roles) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
@@ -105,11 +107,11 @@ public final class User implements UserDetails {
         this.age = age;
     }
 
-    public Set<Role> getRoles() {
+    public List<Role> getRoles() {
         return roles;
     }
 
-    public void setRoles(Set<Role> roles) {
+    public void setRoles(List<Role> roles) {
         this.roles = roles;
     }
 

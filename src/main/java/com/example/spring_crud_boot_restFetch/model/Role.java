@@ -8,11 +8,11 @@ import java.util.List;
 
 @Entity
 @Table(name = "roles")
-public final class Role implements GrantedAuthority {
+public class Role implements GrantedAuthority {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @Column(unique = true)
     private String name;
@@ -23,11 +23,11 @@ public final class Role implements GrantedAuthority {
     public Role() {
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -35,7 +35,7 @@ public final class Role implements GrantedAuthority {
         this.name = name;
     }
 
-    public Role(Integer id) {
+    public Role(Long id) {
         this.setId(id);
     }
 

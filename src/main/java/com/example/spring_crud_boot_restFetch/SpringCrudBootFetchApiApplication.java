@@ -10,7 +10,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import java.util.HashSet;
+import java.util.ArrayList;
 
 @SpringBootApplication
 public class SpringCrudBootFetchApiApplication implements CommandLineRunner {
@@ -41,12 +41,12 @@ public class SpringCrudBootFetchApiApplication implements CommandLineRunner {
 
 		userRepository.save(new User("tom", "chaplin", 42, "admin@mail.ru",
 				passwordEncoder.encode("admin"),
-				new HashSet<>() {{
+				new ArrayList<>() {{
 					add(admin);
 				}}));
 		userRepository.save(new User("jack", "white", 46, "user@mail.ru",
 				passwordEncoder.encode("user"),
-				new HashSet<>() {{
+				new ArrayList<>() {{
 					add(user);
 				}}));
 	}
