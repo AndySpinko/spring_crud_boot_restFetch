@@ -12,11 +12,9 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     @Query("SELECT DISTINCT u FROM User u JOIN FETCH u.roles WHERE u.email = :email")
     User findByEmail(@Param("email") String email);
-    //User findByEmail(String email);
 
     @Query("SELECT DISTINCT u FROM User u JOIN FETCH u.roles")
     List<User> findAll();
-
 
     @Query("SELECT DISTINCT u FROM User u LEFT JOIN FETCH u.roles WHERE u.id = :id")
     Optional<User> findById(@Param("id") Long id);
